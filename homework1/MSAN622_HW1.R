@@ -1,5 +1,4 @@
 #Data Visualization Homework
-
 library(ggplot2) 
 data(movies) 
 data(EuStockMarkets)
