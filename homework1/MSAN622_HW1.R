@@ -3,7 +3,6 @@
 library(ggplot2) 
 data(movies) 
 data(EuStockMarkets)
-setwd("/home/ykatada/Rwork/MSAN622/homework1")
 
 #Filter out any rows that have a budget value less than or equal to 0 in the movies dataset
 movies<-subset(movies, budget>0)
