@@ -1,5 +1,3 @@
-msan622
+USF MSAN622: Data Visualization Yosuke Katada
 =======
-
-Homework for MSAN622
-Hello world!
+This repositpry is for submitting homework
