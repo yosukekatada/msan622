@@ -41,4 +41,6 @@ When I look at the scatter plot abou "budgte vs rating" like the first plot, the
 
 ## Discussion 2: Stock Data##
 
+The following line chart shows the trends for major European stock indices during 1990s. Overall, all the indicies have the same trend, but you would notice that Swiss Market Index (SMI) went up more sharply than other indices from 1995. On the other hand, the growth of FTSE, representing London Stock Exchange, was slower. 
+
 ![IMAGE](hw1-multilines.png)
