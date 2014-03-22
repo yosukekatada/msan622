@@ -23,6 +23,15 @@ source_url("https://raw.githubusercontent.com/yosukekatada/msan622/9df534c38d8d6
 ```
 
 
-## Discussion ##
+## Discussion 1: Movies Data##
 
-[DISCUSSION: Include a discussion here if required by the assignment.]
+![IMAGE](hw1-scatter.png)
+
+![IMAGE](hw1-bar.png)
+
+![IMAGE](hw1-multiples.png)
+
+
+## Discussion 2: Stock Data##
+
+![IMAGE](hw1-multilines.png)
