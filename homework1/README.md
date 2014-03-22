@@ -7,7 +7,16 @@ Homework 1: Basic Charts
 
 ## Instructions ##
 
-[INSTRUCTIONS: Include instructions on how to run your code. See [`homework0`](../homework0) for an example.]
+Prior to running my code, please install the following packages.
+- 'ggplot2'
+- 'reshape2'
+
+Also, please specify your working directory before running the code because PNG files are saved in the specified working directory. 
+
+```
+setwd("/your_working_directory")
+```
+
 
 ## Discussion ##
 
