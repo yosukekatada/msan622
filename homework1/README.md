@@ -32,13 +32,14 @@ In terms of customization of the chart, I enlarged the fonts of title, the label
 
 ![IMAGE](hw1-scatter.png)
 
-
+***
 According to the bar chart below, the distribution is not uniform. Therefore, I can guess that each genre has different partter on scatter plot of "budget vs rating".
 
 ###Customization
 As well as the first chart, I made the font size bigger. Also, in order to make the audience easily read the labels, I rotated the chart because the most important information is genre in this chart. Finally, I chaged color from the default color to the darker blue because I want the audience not to pay attention to the meaning of the color itself. 
 
 ![IMAGE](hw1-bar.png)
+***
 
 When I look at the multiple scatter plots as below, there looks major two patters. FIrst, the parttern is that the range of rating shrinks as the budget increases. "Action", "Comedy", "Drama", "Mixed", and "None" fall in this pattern. The second pattern is that budget is almost zero, although rating has a large variation. "Documentary" and "Short" are in this pattern. "Animation" and "Romance" are not fitted in those two patterns. Regarding Animation, budget is unrelated to rating. When it comes to "Romance", I cannot say that there is some specific pattern.
 
@@ -47,6 +48,7 @@ The most important information on this chart is the differences among the distri
 
 
 ![IMAGE](hw1-multiples.png)
+***
 
 
 ## Discussion 2: Stock Data##
