@@ -1,5 +1,6 @@
 #Data Visualization Homework
-library(ggplot2) 
+library(ggplot2)
+library(reshape2)
 data(movies) 
 data(EuStockMarkets)
 
@@ -32,29 +33,41 @@ th<-theme(plot.title = element_text(size=18),
 
 
 #Plot1: Scatter plot
+x_format<-function(x){y<-round(x/1000000);return(sprintf("%dM",y))}
 p1<-ggplot(movies)+geom_point(aes(x=budget,y=rating))+
-  labs(title = "Budget and Rating", x = "budget", y = "rating") +th
+  labs(title = "Budget and Rating", x = "budget", y = "rating") +th+scale_x_continuous(label = x_format)
 ggsave(file = "hw1-scatter.png", plot = p1, dpi = 100, width = 10, height = 6)
 
 
 #Plot2: Bar Chart
-p2<-ggplot(movies)+geom_bar(aes(x=genre),fill="#004C99")+
-  labs(title = "Count of Genre", x = "Genre", y = "Count")+coord_flip()+th
+a<-which(colnames(movies)=="Action")
+b<-which(colnames(movies)=="Short")
+tmp<-melt(apply(movies[,a:b],2,sum))
+colnames(tmp)[1]<-"Count"
+tmp$Genre<-as.factor(row.names(tmp))
+genreOrder<-order(tmp$Count,decreasing=FALSE)
+tmp$Genre<-factor(row.names(tmp),levels = tmp$Genre[genreOrder])
+p2<-ggplot(tmp)+geom_bar(aes(x=Genre,y=Count),fill="#004C99",stat="identity")+
+  labs(title = "Count by Genre", x = "Genre", y = "Count")+coord_flip()+th+
+  theme(axis.title.y=element_blank(),panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank())+ 
+  scale_y_continuous(expand = c(0, 0))
 ggsave(file = "hw1-bar.png", plot = p2, dpi = 100, width = 10, height = 6)
 
 
 #Plot3: Small Multiples
+x_format<-function(x){y<-round(x/1000000);return(sprintf("%dM",y))}
 p3<-ggplot(movies)+geom_point(aes(x=budget,y=rating,col=genre))+facet_wrap(~genre,ncol=3)+
   theme(axis.title.x = element_text(size=15),
         axis.title.y = element_text(size=15),
         legend.title = element_text(size=15),
-        legend.text = element_text(size=15))
+        legend.text = element_text(size=15))+
+  scale_x_continuous(label = x_format)
 ggsave(file = "hw1-multiples.png", plot = p3, dpi = 100, width = 10, height = 6)
 
 
 #Plot 4: Multi-Line Chart
 #First of all, transform dataset for easily creating multi-line chart by melt function
-library(reshape2)
 eu2<-melt(eu[,1:4])
 time<-rep(eu[,5],4)
 eu2<-as.data.frame(cbind(eu2,time))
