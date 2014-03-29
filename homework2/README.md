@@ -25,7 +25,7 @@ Also, if the `shiny` app is grether than your screen, please adjust zoom ratio o
 
 ## Discussion ##
 
-My shinyapp has two tabs such as "Scatter Plot" tab and "Table" tab. In the "Scatter plot" tab, you can change the deta points by group of MAPP rating as well as genre. Also, you can select the element out of either MPAA rating or genre for coloring the data points. Furtheremore, a click button called "Scatter Plot by Facet" is to expand a single scatter plot to the multiple scatter plot. This function would help you to compare the distributions by genre or MAPP rating. In addition to the functions that I explained so far, I added a plot setting panel for changing the apperance. You can change not only the color scheme but also the background panel's color. If the data points are less recognizable, you can change background color. Also, you can change dot size and dot alpha.
+My shinyapp has two tabs such as "Scatter Plot" tab and "Table" tab. In the "Scatter plot" tab, you can change the data points by group of MAPP rating as well as genre. Also, you can select either MPAA rating or genre for coloring the data points. Furtheremore, a click button called "Scatter Plot by Facet" is to expand a single scatter plot to the multiple scatter plot. This function would help you to compare the distributions by genre or MAPP rating. In addition to the functions that I explained so far, I added a plot setting panel for changing the apperance. You can change not only the color scheme but also the background panel's color. If the data points are less recognizable, you can change background color. Also, you can change dot size and dot alpha.
 
 ![IMAGE](shinyapp_1.png)
 
