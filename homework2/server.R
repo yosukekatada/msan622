@@ -70,15 +70,19 @@ getPlot<-function(dat,col,dotsize,dotalpha,facet=FALSE,palette,bw){
                axis.text.y=element_text(size=18),
                axis.text.x=element_text(size=18),
                legend.title = element_text(size=22),
-               legend.text = element_text(size=20)) 
+               legend.text = element_text(size=20),
+               panel.grid.minor = element_line(linetype = 3)) 
     if(bw=="White"){
       p<-p+theme(panel.background=element_rect(fill="White"),
                  panel.grid.major = element_line(color = "gray"),
-                 panel.grid.minor = element_line(color = "gray"))
+                 panel.grid.minor = element_line(color = "gray",linetype = 3))
+      p <-p+theme(legend.key = element_rect(fill = "White"))
+      
     }else if(bw=="Black"){
       p<-p+theme(panel.background=element_rect(fill="Black"),
                  panel.grid.major = element_line(color = "white"),
-                 panel.grid.minor = element_line(color = "white"))
+                 panel.grid.minor = element_line(color = "white",linetype = 3))
+      p <-p+theme(legend.key = element_rect(fill = "Black"))
               }
       
   p<-p+scale_x_continuous(limits = c(0,200000000),label=x_format)+scale_y_continuous(limits=c(0,10))
@@ -108,7 +112,7 @@ shinyServer(function(input,output){
   
   output$table<-renderDataTable({
     dat()
-  }, options=list(iDisplayLength=10))
+  }, options=list(iDisplayLength=15))
     
   output$scatterPlot<-renderPlot({
     scatterPlot<-getPlot(dat(),
@@ -119,7 +123,7 @@ shinyServer(function(input,output){
                          palette=input$palette,
                          bw=input$bw)
     print(scatterPlot)
-  },width=1200,height=800
+  },width=1000,height=800
     )
   
   })

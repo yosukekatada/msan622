@@ -3,17 +3,21 @@ library(shiny)
 
 shinyUI(pageWithSidebar(
   headerPanel("MSAN622 Homework2"),
-  sidebarPanel(
+  sidebarPanel(width=3,
     
-    #MPAA radio buttons
-    radioButtons(
+  wellPanel(
+  HTML("<strong><p>Subsetting Data</p></strong>"),
+                 
+  #MPAA radio buttons
+    div(class="row",
+        div(class="span1"),
+   div(class="span3",radioButtons(
       "mpaa_rating",
-      strong("MPAA_Rating"),c("All","PG-13","PG","R", "NC-17"),selected = "All"),
-    
-    HTML("</br>"),
-    
+      strong("MPAA_Rating"),c("All","PG-13","PG","R", "NC-17"),selected = "All")),
+        
     #Genre Checkbox 
-    checkboxGroupInput(
+   div(class="span1"),
+    div(class="span3",checkboxGroupInput(
       "genre",
       strong("Genre"),c("Action",
                 "Animation",  
@@ -32,14 +36,13 @@ shinyUI(pageWithSidebar(
                 "Mixed",
                 "Romance",
                 "Short",
-                "None")),
+                "None"))))
+  ),
     
-    HTML("<br>"),
     HTML("<strong><p>Scatter Plot by Facet</p></strong>"),
     checkboxInput("facet","ON",value=FALSE),
     
     #Color by
-    HTML("<br>"),
     selectInput(inputId ="color_by", 
                 label = strong("Color by"), 
                 choices = c("MPAA","Genre"),
@@ -65,8 +68,8 @@ shinyUI(pageWithSidebar(
     tabsetPanel(
       tabPanel("Scatter Plot", 
                plotOutput("scatterPlot",width="100%",height="100%")
-               ),
-      tabPanel("Table", dataTableOutput("table"))
+      ),
+      tabPanel("Table", dataTableOutput("table"))     
         )
       )
   )
