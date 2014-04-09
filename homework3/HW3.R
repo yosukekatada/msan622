@@ -65,3 +65,74 @@ ggparcoord(df,columns = c(1,2,3,4,5),groupColumn=11, mapping=aes(size=1))+ geom_
 
 #Scatter Plot Matrix
 g<-ggpairs(df,columns=1:5,color="Region")
+
+
+# Load required packages
+require(GGally)
+
+# Load datasets
+data(iris)
+
+# Create scatterplot matrix
+p <- ggpairs(iris, 
+             # Columns to include in the matrix
+             columns = 1:4,
+             
+             # What to include above diagonal
+             # list(continuous = "points") to mirror
+             # "blank" to turn off
+             upper = "blank",
+             
+             # What to include below diagonal
+             lower = list(continuous = "points"),
+             
+             # What to include in the diagonal
+             diag = list(continuous = "density"),
+             
+             # How to label inner plots
+             # internal, none, show
+             axisLabels = "none",
+             
+             # Other aes() parameters
+             colour = "Species",
+             title = "Iris Scatterplot Matrix"
+)
+
+# Remove grid from plots along diagonal
+for (i in 1:4) {
+  for(j in 1:4){
+    # Get plot out of matrix
+    inner = getPlot(p, i, j);
+    
+    # Add any ggplot2 settings you want
+    inner = inner + theme(panel.grid = element_blank());
+    
+    # Put it back into the matrix
+    p <- putPlot(p, inner, i, j);    
+  }
+}
+
+}
+#Lengend
+dummydat<-data.frame(x=c(0,0,0,0),y=c(0,0,0,0),Region=c("hoge","hoge2","hoge3","hoge4"))
+
+dummydat<-data.frame(x=c(0),y=c(0),Region=c("hoge"))
+ggplot(dummydat)+geom_point(aes(x=x, y=y,col=Region))+scale_x_continuous(limits = c(-0.1,0.3))+
+  theme(legend.position = c(0.1, 0.3), 
+        legend.justification = c(0, 0),
+        panel.background = element_rect(fill="WHITE"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        axis.text = element_blank()
+        )+
+  guides(col= guide_legend(
+    title.theme = element_text(size=20,angle=0),
+    label.theme = element_text(size=20,angle=0),
+    direction = "horizontal", 
+    title.position = "top",
+    label.position="bottom",
+    keywidth=8,
+    keyheight=12, 
+    override.aes = list(size = 40)))

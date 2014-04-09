@@ -93,6 +93,9 @@ shinyUI(navbarPage("Switch Plot",
                        sidebarLayout(
                          sidebarPanel(width=3,
                                       wellPanel(                                        
+                                        div(class="row",
+                                            div(class="span1"),
+                                            div(class="span3",    
                                         checkboxGroupInput("para_var", "Select variables", 
                                                            c("Population",
                                                              "Income",
@@ -102,11 +105,14 @@ shinyUI(navbarPage("Switch Plot",
                                                              "HS.Grad",
                                                              "Frost",
                                                              "Area")
-                                                           , selected = c("Population","Income")),
+                                                           , selected = c("Population","Income"))),
+                                            div(class="span1"),
+                                            div(class="span5",
                                         radioButtons("para_color", "Color by:", c("Region",
                                                                                     "Division"), selected = "Region"),
+                                            uiOutput("para_groups"))),
                                         
-                                        uiOutput("para_groups"),
+                                        
                                         selectInput("scale","Scaling :", c("std",
                                                                            "robust",
                                                                            "uniminmax",

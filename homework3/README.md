@@ -11,7 +11,7 @@ Use the following code to run this `shiny` app:
 
 ```
 library(shiny)
-runGitHub("msan622", "[username]", subdir = "homework3")
+runGitHub("msan622", "yosukekatada", subdir = "homework3")
 ```
 
 ## Discussion ##

@@ -28,26 +28,34 @@ get_Bubble<-function(df, x_var, y_var, size_var, col_var, alpha, xlim,ylim, text
   #Subsetting data
   df2<-subset(df, df[,color_idx] %in% subset_data)
   
-  #Order data to avoid smaller bubbles are hidden 
-  df2<-df[order(df2[,sort_idx],decreasing=TRUE),]
+  if(dim(df2)[1]==0){
+    dummy<-data.frame(dummy1=0,dummy2=0, labels = "There is no data point")
+    p<-ggplot(dummy)+geom_text(aes(x=dummy1,y=dummy2, label = labels),size=20)+
+      theme(axis.title.x = element_blank(),
+            axis.title.y = element_blank())
+  }else{
+    #Order data to avoid smaller bubbles are hidden 
+    df2<-df[order(df2[,sort_idx],decreasing=TRUE),]
+    
+    #Create plot
+    p<-ggplot(df2,aes_string(x=x_var, y =y_var))+geom_point(aes_string(color=col_var, size =size_var),alpha=1, position="jitter")
+    if(textOn){
+      p<-p+geom_text(aes(label = Abbrev),col="#3D3535", hjust =0.5, vjust=0)  
+    }
+    p<-p+scale_size_continuous(range = c(5,30), guide="none")
+    p<-p+coord_cartesian(xlim = xlim,ylim=ylim)
+    p<-p+theme(plot.title = element_text(size=24),
+               axis.title.x = element_text(size=20),
+               axis.title.y = element_text(size=20),
+               axis.text.y=element_text(size=18),
+               axis.text.x=element_text(size=18),
+               legend.title = element_text(size=22),
+               legend.text = element_text(size=20),
+               panel.grid.minor = element_line(linetype = 3)) 
+    p<-p+guides(colour = guide_legend(override.aes = list(size = 10)))
+    p + scale_colour_discrete(limits = levels(df[,color_idx]))    
+  }  
   
-  #Create plot
-  p<-ggplot(df2,aes_string(x=x_var, y =y_var))+geom_point(aes_string(color=col_var, size =size_var),alpha=1, position="jitter")
-  if(textOn){
-    p<-p+geom_text(aes(label = Abbrev),col="#3D3535", hjust =0.5, vjust=0)  
-  }
-  p<-p+scale_size_continuous(range = c(5,30), guide="none")
-  p<-p+coord_cartesian(xlim = xlim,ylim=ylim)
-  p<-p+theme(plot.title = element_text(size=24),
-             axis.title.x = element_text(size=20),
-             axis.title.y = element_text(size=20),
-             axis.text.y=element_text(size=18),
-             axis.text.x=element_text(size=18),
-             legend.title = element_text(size=22),
-             legend.text = element_text(size=20),
-             panel.grid.minor = element_line(linetype = 3)) 
-  p<-p+guides(colour = guide_legend(override.aes = list(size = 10)))
-  p + scale_colour_discrete(limits = levels(df[,color_idx]))
   return(p)
 }
 
@@ -55,38 +63,78 @@ get_Bubble<-function(df, x_var, y_var, size_var, col_var, alpha, xlim,ylim, text
 #Scatter Plot
 get_ScatterPlot<-function(df,x_var,col_var,sub){
   
+  
+  dum_len<-length(unique(df$Region))
+  dum_x<-rep(0,dum_len)
+  dum_y<-seq(0,-(dum_len-1))
+  dummydat<-data.frame(x=dum_x,y=dum_y,Region=levels(df$Region))
+  dummydat2<-dummydat[dummydat[,3] %in% sub, ]
+  
   idx<-1:dim(df)[2]
   col_idx<-idx[colnames(df) == "Region"]  
   var_idx<-idx[colnames(df) %in% x_var]
   df2<-df[df[,col_idx] %in% sub,]
+
   
-  if(col_var=="Region"){
-    g<-ggpairs(df2,columns=var_idx, 
-               color="Region", 
-               upper = "blank",
-               diag = list(continuous = "density"),
-               lower = list(continuous = "points"),
-               axisLabels = "none")    
+  if(dim(df2)[1]==0){
+    dummy<-data.frame(dummy1=0,dummy2=0, labels = "There is no data point")
+    g<-ggplot(dummy)+geom_text(aes(x=dummy1,y=dummy2, label = labels),size=20)+
+      theme(axis.title.x = element_blank(),
+            axis.title.y = element_blank())
   }else{
-    g<-ggpairs(df2,columns=var_idx, 
-               upper = "blank",
-               diag = list(continuous = "density"),
-               lower = list(continuous = "points"),
-               axisLabels = "none")    
-  }
-  for (i in 1:length(col_idx)) {
-    for(j in 1:length(col_idx)){
-      # Get plot out of matrix
-      inner = getPlot(g, i, j);
+    if(col_var=="Region"){
+      g<-ggpairs(df2,columns=var_idx, 
+                 color="Region", 
+                 upper = "blank",
+                 diag = list(continuous = "density"),
+                 lower = list(continuous = "points"),
+                 axisLabels = "none")
       
-      # Add any ggplot2 settings you want
-      inner = inner + theme(panel.grid = element_blank());
       
-      # Put it back into the matrix
-      g <- putPlot(g, inner, i, j);
+      
+      
+    }else{
+      g<-ggpairs(df2,columns=var_idx, 
+                 upper = "blank",
+                 diag = list(continuous = "density"),
+                 lower = list(continuous = "points"),
+                 axisLabels = "none") 
     }
+    for (i in 1:length(var_idx)) {
+      for(j in 1:length(var_idx)){
+        
+        if(i==j){
+          inner = getPlot(g, i, j);
+          inner = inner + theme(panel.grid = element_blank());
+          g <- putPlot(g, inner, i, j)          
+        }else if((i==1) && (j==length(var_idx))){
+          if(col_var=="Region"){
+            dummy_legend <- ggplot(dummydat2)+geom_text(aes(x=x,y=y,label=Region,col=Region),size=4)+
+              theme(panel.background = element_rect(fill="WHITE"),
+                    panel.grid.major = element_blank(),
+                    panel.grid.minor = element_blank(),
+                    axis.ticks = element_blank(),
+                    axis.title = element_blank(),
+                    axis.text = element_blank())
+          }else{
+            dummy_legend <- ggplot(dummydat2)+geom_text(aes(x=x,y=y,label=Region),size=4)+
+              theme(panel.background = element_rect(fill="WHITE"),
+                    panel.grid.major = element_blank(),
+                    panel.grid.minor = element_blank(),
+                    axis.ticks = element_blank(),
+                    axis.title = element_blank(),
+                    axis.text = element_blank())
+          }          
+          g <- putPlot(g, dummy_legend, i, j);
+        }else if(i>j){
+          inner = getPlot(g, i, j);
+          inner = inner + theme(panel.grid.minor = element_blank(),
+                                panel.grid.major = element_line(size=0.5, linetype="dotted"))
+          g <- putPlot(g, inner, i, j)          
+        }  
+        }
+    }    
   }
-  
   return(g)
 }
 
@@ -143,7 +191,6 @@ get_paraPlot<-function(df,x_var,col_var,scale,highlight,size, alpha, bw){
         axis.ticks = element_blank(),
         axis.text.y = element_blank(),
         panel.grid.major.y = element_blank(),
-        legend.position = "bottom",
         panel.grid.minor = element_blank()) 
   
   
@@ -152,7 +199,7 @@ get_paraPlot<-function(df,x_var,col_var,scale,highlight,size, alpha, bw){
 
 
 
-
+#Shiny Server Side
 shinyServer(function(input, output,session) {
   LocalFrame<-globalData
   
@@ -267,7 +314,7 @@ shinyServer(function(input, output,session) {
                     alpha = input$linealpha,
                     bw = input$bw_para)
     print(q)
-    },height=600)
+    },height=800)
   
   output$debug<-renderText({paste(input$sm_color)})
 })
