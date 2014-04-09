@@ -32,7 +32,7 @@ p<-p+guides(colour = guide_legend(override.aes = list(size = 20)))
 
 #p<-p+scale_size_area(max_size=20, guide="none")
 p<-p+geom_text(aes(label = Abbrev),col="#3D3535", hjust =0.5, vjust=0)
-#p<-p+annotate("text",x=(max(df$Income)+min(df$Income))/2,y= max(df$Life.Exp)+1, label = "Circle is the size of Population")
+p<-p+annotate("text",x=(max(df$Income)+min(df$Income))/2,y= max(df$Life.Exp)+1, label = "Circle is the size of Population")
 p
 
 #scatteplot

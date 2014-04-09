@@ -57,14 +57,14 @@ According to the plots so far, I started to understand that the states in south 
 ### Interactivity for Bubble Plot ###
 
 In shiny app, you can select a plot among the three plots from the navigation bar. 
-In "Bubble chart" tab, you can choose which column is used for X-axis, Y-axis, the size of bubble and coloring. Also, you can use *Zooming* and *Filtering*. In addition, you can check the data behind the plot by clicking table tab. The table tab is connected to the plot, so if you filter the data on the plot tab, the table is also subsetted. Due to this interacticity, you can quickly check your assumptions on the data and get insight. 
+In "Bubble chart" tab, you can choose which column is used for X-axis, Y-axis, the size of bubble and coloring. Also, you can use *Zooming* and *Filtering* for divinf into the detail or smaller difference. In addition, you can check the data behind the plot by clicking table tab. The table tab is connected to the plot, so if you filter the data on the plot tab, the table is also subsetted. Due to this interacticity, you can quickly check your assumptions on the data and get insight. 
 
 ![Interactivity1](interactivity1.png)
 
-Next tab, "Scatte Plot Matrix" gives you the interactive scatter plot matrix. In this plot, you can select which variables should be included. Aslo, you can use *Filtering* based on region. 
+Next tab, "Scatte Plot Matrix" gives you the interactive scatter plot matrix. In this plot, you can select which variables should be included. Aslo, you can use *Filtering* based on region. The whole data does not have correlation, but the subset sometimes has it. So, if you used filtering, you can discover them.
 
 ![Interactivity2](interactivity2.png)
 
-The last plot is Parallel Coordinate plot. Like the other two plots, you can choose the variables. Also, if you select the subsets of the data based on Rigion or Division, the selected data is highlighted (*Brushing*). For this highlight, you can change the color of the background, the line size, and alpha. 
+The last plot is Parallel Coordinate plot. Like the other two plots, you can choose the variables. Also, if you select the subsets of the data based on Rigion or Division, the selected data is highlighted (*Brushing*). In parallel coordinates plot, the context is very important for comparison. Thefore, I used highlight techniqu not filtering. For this highlight, you can change the color of the background, the line size, and alpha.
 
 ![Interactivity2](interactivity3.png)
