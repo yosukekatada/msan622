@@ -54,8 +54,9 @@ get_Bubble<-function(df, x_var, y_var, size_var, col_var, alpha, xlim,ylim, text
                panel.grid.minor = element_line(linetype = 3)) 
     p<-p+guides(colour = guide_legend(override.aes = list(size = 10)))
     p + scale_colour_discrete(limits = levels(df[,color_idx]))    
-  }  
-  
+  }
+  circle_size = paste("The size of a bubble represents",size_var)
+  p<-p+annotate("text",x=(xlim[2]+xlim[1])/2,y= ylim[2]*0.95, label = circle_size,size=7)
   return(p)
 }
 
