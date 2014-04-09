@@ -19,6 +19,17 @@ df<-df[order(df$Income,decreasing=TRUE),]
 p<-ggplot(df,aes(x=Population, y =Life.Exp))+geom_point(aes(color= Region, size = Income),alpha=1, position="jitter")
 p<-p+scale_size_continuous(range = c(2,20), guide="none")
 
+p<-p+theme(plot.title = element_text(size=24),
+           axis.title.x = element_text(size=20),
+           axis.title.y = element_text(size=20),
+           axis.text.y=element_text(size=18),
+           axis.text.x=element_text(size=18),
+           legend.title = element_text(size=22),
+           legend.text = element_text(size=20)
+           #panel.grid.minor = element_blank()
+           ) 
+p<-p+guides(colour = guide_legend(override.aes = list(size = 20)))
+
 #p<-p+scale_size_area(max_size=20, guide="none")
 p<-p+geom_text(aes(label = Abbrev),col="#3D3535", hjust =0.5, vjust=0)
 #p<-p+annotate("text",x=(max(df$Income)+min(df$Income))/2,y= max(df$Life.Exp)+1, label = "Circle is the size of Population")

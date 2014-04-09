@@ -25,14 +25,21 @@ shinyUI(navbarPage("Switch Plot",
                                                                                "Area"), selected = "Income"),
                                            uiOutput("y_range_slider")),
                                            
+                                           wellPanel(
+                                             selectInput("bubble_size","Bubble Size",c("Population",
+                                                                                       "Income",
+                                                                                       "Area"), selected = "Area"),
+                                             checkboxInput("textOn","Put State Lable",value=TRUE)
+                                             ),
                                            
-                                           radioButtons("bubble_color", "Color by:", c("Region",
-                                                                                       "Division"), selected = "Region"),
-                                           
-                                          selectInput("bubble_size","Bubble Size",c("Population",
-                                                                                     "Income",
-                                                                                     "Area"), selected = "Area"),
-                                          checkboxInput("textOn","Put State Lable",value=TRUE)
+                                           wellPanel(
+                                             radioButtons("bubble_color", "Color by:", c("Region",
+                                                                                         "Division"), selected = "Region"),
+                                             
+                                             
+                                             uiOutput("subset_data")                                             
+                                             )
+                                          
                ), #end of sideBar
                mainPanel(
                  tabsetPanel(
@@ -60,9 +67,18 @@ shinyUI(navbarPage("Switch Plot",
                                                            "Area")
                                                          , selected = c("Population","Income")),
                                       radioButtons("sm_color", "Color by:", c("Region",
-                                                                                "Division"), selected = "Region"),
+                                                                                "None"), selected = "Region"),
                                       
-                                      uiOutput("sm_subset")
+                                      checkboxGroupInput("sm_subsetGroup", "Filtering Region", 
+                                                         c("Northeast",
+                                                           "South",
+                                                           "North Central",
+                                                           "West")
+                                                         , selected = c("Northeast",
+                                                                        "South",
+                                                                        "North Central",
+                                                                        "West"))
+                                      
                          ),
                          mainPanel(
                            plotOutput("smplot","Scatter Plot Matrix", width="100%",height="100%")
@@ -76,7 +92,7 @@ shinyUI(navbarPage("Switch Plot",
               tabPanel("Parallel Coordinate Plot",
                        sidebarLayout(
                          sidebarPanel(width=3,
-                                      wellPanel(
+                                      wellPanel(                                        
                                         checkboxGroupInput("para_var", "Select variables", 
                                                            c("Population",
                                                              "Income",
@@ -100,6 +116,10 @@ shinyUI(navbarPage("Switch Plot",
                                         
                                         ), #wellPanel end
                           wellPanel(
+                            HTML("<p>Plot setting</p>"),
+                            selectInput("bw_para", "BackGround Color",
+                                        choices = c("Default", "Black","White"),
+                                        selected = "Default"),
                             sliderInput("linesize", "Line Size:",
                                         min = 1, max = 10, value = 1, step=1),
                             sliderInput("linealpha", "Line Alpha:",
@@ -107,14 +127,8 @@ shinyUI(navbarPage("Switch Plot",
                             ) # wellPanel end
                                       ),
                          mainPanel(
-                           tabsetPanel(
-                             tabPanel("Parallel Coordinates Plot", 
-                                      plotOutput("paraplot",width="100%",height="100%")
-                             ),
-                             tabPanel("Table", dataTableOutput("table2")),
-                             tabPanel("Debug", textOutput("debug"))
-                           ) #tabsetPanel end
-                         ) #MainPanel end
+                           plotOutput("paraplot",width="100%",height="100%")
+                            ) #MainPanel end
                        ) # sideBarLayout end
               ) # tabPanel end
     
