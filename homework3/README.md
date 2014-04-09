@@ -16,28 +16,35 @@ runGitHub("msan622", "yosukekatada", subdir = "homework3")
 
 ## Discussion ##
 
-### Technique 1: [TYPE] ###
+### Technique 1: Bubble Plot ###
+
 
 ![technique1](technique1.png)
 
 [DISCUSSION]
 
-### Technique 2: [TYPE] ###
+#### Interactivity for Bubble Plot ####
+
+[DISCUSSION]
+
+### Technique 2: Scatterplot Matrix ###
+
 
 ![technique2](technique2.png)
 
 [DISCUSSION]
 
-### Technique 3: [TYPE] ###
+#### Interactivity for Scatterplot Matrix ####
+
+[DISCUSSION]
+
+### Technique 3: Parallel Coordinates Plot ###
 
 ![technique3](technique3.png)
 
 [DISCUSSION]
 
-### Interactivity ###
-
-![screenshot](screenshot.png)
+#### Interactivity for Parallel Coordinates Plot ####
 
 [DISCUSSION]
-
 
