@@ -7,7 +7,8 @@ Homework3: Multivariate
 
 ## Instructions ##
 
-Use the following code to run this `shiny` app:
+Before you start shiny app, please make sure that you install `GGally` and `grid` packages. 
+After that, use the following code to run this `shiny` app:
 
 ```
 library(shiny)
