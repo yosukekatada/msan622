@@ -20,7 +20,11 @@ So, my tools would be:
 
 Planned Techniques and Interaction
 ------------------------------
-I would use **bar chart**, **scatter plot**, **paralell coordinates plot** and **heatmap**.
+I would use 
+- **bar chart**
+- **scatter plot**
+- **paralell coordinates plot**
+- **heatmap**.
 
 The following is the detail. My visualization consists of three aspects.
 
@@ -30,11 +34,11 @@ The following is the detail. My visualization consists of three aspects.
 
 #### Visualization for multivariate variables####
 - I would implement **scatter plot**(or **heatmap** if data is too dense) and **paralell cooridates plot** for investigating the relatinship among numeric variables. Also, I would use **heatmap** for visualizing categorical values.
-- **zooming** and **filtering** would be used for scatter plot and paralell coordinates plot. Also, **sorting** woudl be used for heatmap.
+- **Zooming** and **filtering** would be used for scatter plot and paralell coordinates plot. Also, **sorting** woudl be used for heatmap.
 
 #### Modeling ####
--After the two steps above, I suppose that the marketing analytics person would like modeling. For modeling, I would implement an interactive modeling tool with visualization. The model candidates are Logistic regression and Random forest. So, I would use **bar chart** for the importance of the predictor variables. Also, I would use **scatter plot** for showing decision boundary.
-- **zooming** and **filtering** would be used for scatter plot.
+- After the two steps above, I suppose that the marketing analytics person would like modeling. For modeling, I would implement an interactive modeling tool with visualization. The model candidates are Logistic regression and Random forest. So, I would use **bar chart** for the importance of the predictor variables. Also, I would use **scatter plot** for showing decision boundary.
+- **Zooming** and **filtering** would be used for scatter plot.
 
 
 Planned Interface
