@@ -28,7 +28,7 @@ I would use
 
 The following is the detail. My visualization consists of three aspects: basic customer profiling, visualization for multivariate variables, and modeling.
 
-#### Basic customer Profiling ####
+#### Basic Customer Profiling ####
 - I would employ **bar chart** for showing univariate sumamry of all the variables.
 - For interaction, **sorting** woudl be used.
 
@@ -44,7 +44,7 @@ The following is the detail. My visualization consists of three aspects: basic c
 Planned Interface
 ------------------------------
 
-#### Basic Profiling ####
+#### Basic Customer Profiling ####
 ![page1](page1.png)
 
 
