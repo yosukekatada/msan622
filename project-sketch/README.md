@@ -24,11 +24,11 @@ I would use
 - **bar chart**
 - **scatter plot**
 - **paralell coordinates plot**
-- **heatmap**.
+- **heatmap**
 
-The following is the detail. My visualization consists of three aspects.
+The following is the detail. My visualization consists of three aspects: basic customer profiling, visualization for multivariate variables, and modeling.
 
-#### Basic Profiling ####
+#### Basic customer Profiling ####
 - I would employ **bar chart** for showing univariate sumamry of all the variables.
 - For interaction, **sorting** woudl be used.
 
