@@ -45,10 +45,10 @@ Planned Interface
 
 
 #### Visualization for multivariate variables####
-[page2-1](page2-1.png)
-[page2-2](page2-2.png)
+![page2-1](page2-1.png)
+![page2-2](page2-2.png)
 
 
 #### Modeling ####
-[page3-1](page3-1.png)
-[page3-2](page3-2.png)
+![page3-1](page3-1.png)
+![page3-2](page3-2.png)
