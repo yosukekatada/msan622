@@ -7,7 +7,7 @@ Homework4: Text Visualization
 
 ## Instructions ##
 
-Please make sure that there is a folder whose name is "dataset" in your working directory because my code automatically create "dataset" folder in your working directory and download the datafiles into "dataset" directory. Also, please make sure that you install `tm`,`SnowballC`, `wordcloud`,`ggplot2`,`reshape2`, and `downloader`packages. 
+Please make sure that there is **NO** folder whose name is "dataset" in your working directory because my code automatically create "dataset" folder in your working directory and download the datafiles into "dataset" directory. Also, please make sure that you install `tm`,`SnowballC`, `wordcloud`,`ggplot2`,`reshape2`, and `downloader`packages. 
 
 ```
 library(devtools)
