@@ -10,7 +10,7 @@ library(downloader)
 ### Download the data ####
 ##########################
 original_wd<-getwd()
-dat_directory<-paste(original_wd,"/dataset_hoge",sep="")
+dat_directory<-paste(original_wd,"/dataset",sep="")
 dir.create(dat_directory)
 setwd(dat_directory)
 url1<-"https://raw.githubusercontent.com/yosukekatada/msan622/master/homework4/dataset/Barack_Obama_2009.txt"
