@@ -22,9 +22,9 @@ download(url3,"Barack_Obama_2011.txt",mode="wb")
 url4<-"https://raw.githubusercontent.com/yosukekatada/msan622/master/homework4/dataset/Barack_Obama_2012.txt"
 download(url4,"Barack_Obama_2012.txt",mode="wb")
 url5<-"https://raw.githubusercontent.com/yosukekatada/msan622/master/homework4/dataset/Barack_Obama_2013.txt"
-download(url4,"Barack_Obama_2013.txt",mode="wb")
+download(url5,"Barack_Obama_2013.txt",mode="wb")
 url6<-"https://raw.githubusercontent.com/yosukekatada/msan622/master/homework4/dataset/Barack_Obama_2014.txt"
-download(url4,"Barack_Obama_2014.txt",mode="wb")
+download(url6,"Barack_Obama_2014.txt",mode="wb")
 setwd(original_wd)
 
 ###########################
