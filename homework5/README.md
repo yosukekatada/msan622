@@ -7,7 +7,7 @@ Homework 5: Time Series Visualization
 
 ## Instructions ##
 
-Before you start shiny app, please make sure that you install `reshapes` packages. 
+Before you start shiny app, please make sure that you install `reshape2` package. 
 After that, use the following code to run this `shiny` app:
 
 ```
@@ -19,19 +19,19 @@ runGitHub("msan622", "yosukekatada", subdir = "homework5")
 I selected **interactivity** option, and developed the following data visualizations.
 
 ### Data ###
-In `Seatbelts` data, I am interested in how many people are killed and seriously injured. However, it is natural that the number of the people killed or injured increases as the drive distance goes up. So, I transformed the original number of the people killed or seriously injured into the number per 100km drive distance for fair comparision.
+In `Seatbelts` data, I was interested in how many people are killed were seriously injured. However, it is natural that the number of the people killed or injured increased as the drive distance went up. So, I transformed the original number of the people killed or seriously injured into the number per 100km drive distance for fair comparision.
 
 ##Line Plot/Stacked Area Plot##
 
 ### Technique 1: Line Plot ###
 
-I want to know trend and seasonality on the the people in front seats and rear seats as well as drivers. So, I set *time* at X-axis and*the number of people who killed or seriously injured per 100km drive distance* at y-axis. According to this plot, I can know that the number of drivers is always largest and that there would be a seasonality.
+I wanted to know trend and seasonality on the the people in front seats and rear seats as well as drivers. So, I set **time** at X-axis and **the number of people who killed or seriously injured per 100km drive distance** at y-axis. According to this plot, I can know that the number of drivers was always largest and that there was a seasonality.
 
 ![technique1](lineplot.png)
 
 ### Technique 2: Stacked Area Plot ###
 
-About the same data I used in technique 1, I look at the aggregated trend by using stacked area plot.
+About the same data I used in technique 1, I looked at the aggregated trend by using stacked area plot.
 
 ![technique2](stackedareaplot.png)
 
@@ -40,23 +40,23 @@ About the same data I used in technique 1, I look at the aggregated trend by usi
 - Made the major and minor grid thinner for higher data ink ratio
 
 #### Interactivity ####
-- **Brushing :** You can look at both of the detail and overall by selecting the range of year.
+- **Brushing :** You can look at both the detail and overall by selecting the range of year.
 - **Filtering :** You can select which variables are included in the plot.
 
 
 ##Multiline Plot/Star Plot##
 
-As I discussed above, there would be a seasonality on this data. In order to look at the detail, I develop the multipline plot and star plot for seeing the seasonality on monthly basis.
+As I discussed above, there was a seasonality on this data. In order to look at the detail, I developed the multipline plot and star plot for seeing the seasonality on monthly basis.
 
 ### Technique 3: Multiline Plot ###
 
-For this purpose, I developed a multiline plot. X-axis is month, and Y-axis is the number of the people perished or seriously injured per 100km drive. Color represents year.
+For this purpose, I developed a multiline plot. X-axis is **month**, and Y-axis is **the number of the people perished or seriously injured per 100km drive**. Color represents **year**.
 
 ![technique3](multilineplot.png)
 
 ### Technique 4: Star Plot ###
 
-As we discussed in the class, line plot has a problem of disconnecting the cycle of the seasonality. So, I used star plot in order to connect December and Janualy.
+As we discussed in the class, a line plot has a problem of disconnecting the cycle of the seasonality. So, I used star plot in order to connect December and Janualy.
 
 ![technique4](starplot.png)
 
@@ -67,4 +67,4 @@ As we discussed in the class, line plot has a problem of disconnecting the cycle
 
 #### Interactivity ####
 - **Filtering :** You can select which variable and years are included in the plot.
-- You change the plot format between a single multiline plot/star plot and a small multiple plot.
+- You can change the plot format between a single multiline plot/star plot and a small multiple plot.
