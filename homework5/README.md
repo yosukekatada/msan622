@@ -7,7 +7,7 @@ Homework 5: Time Series Visualization
 
 ## Instructions ##
 
-Before you start shiny app, please make sure that you install `reshape2` package. 
+Before you start shiny app, please make sure that you installed `reshape2` and `RColorBrewer`package. 
 After that, use the following code to run this `shiny` app:
 
 ```
