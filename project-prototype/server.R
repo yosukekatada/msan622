@@ -247,7 +247,9 @@ shinyServer(function(input, output, session){
   output$roi_plot<-renderPlot({
     input$sim_run  
     get_simulationPlot(
-      sim_table=isolate(sim_table()))
+      sim_table=isolate(sim_table()),
+      target_customer = isolate(input$target_customer),
+      camp_cost = isolate(input$camp_cost))
   }, width=1200, height=900)
 
   #Show ROI Table

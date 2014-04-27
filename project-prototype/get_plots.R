@@ -634,7 +634,7 @@ ROI_simulation<-function(sim_timeline,
 }
 
 
-get_simulationPlot<-function(sim_table){
+get_simulationPlot<-function(sim_table, target_customer, camp_cost){
   Year<-colnames(sim_table)
   Year<-Year[-length(Year)]
   

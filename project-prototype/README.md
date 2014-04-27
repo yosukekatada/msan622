@@ -73,6 +73,6 @@ Only for numeric variables, you can use scatter plot. I used zooming technique b
 You can run Logistic regression model based on the variables you select.
 ![model_ui](model_ui.png) 
 
-Simulation
+#### ROI Simulation ####
 Finally, based on the model you estimated, you can run cash flow simulation and calculate project ROI. Based on the insight from this simulation as well as the model, marketing analyst can propose actionable plans.
 ![roi_ui](roi_ui.png) 
