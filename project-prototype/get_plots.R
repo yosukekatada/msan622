@@ -476,7 +476,7 @@ logistic_reg<-function(data,x_var,train_size=0.8,cut_prob=0.5){
               Confusion_mat = confusion_mat,
               Accuracy_report = acc_report,
               data_mm=data_mm_test,
-              y = y_test,
+              y = y_actual,
               importanceData=importanceData_scale, 
               coef=coef,
               balance = ave_balance,
