@@ -46,7 +46,7 @@ I suppose that this shiny app tries to help a marketing analytics personel to an
 The following is a summary about how each component associates with techniques and interactivity.
 
 | **Component**  | **Techniques**  | **Interactivity**  |
-|----------:|:-------------|
+|----------:|:-------------:|-------------:|
 | Basic Profiling (Univariate plots) | Density plot and Box plot / Bar chart and 100% Bar chart | Switch between a single plot and small multiple |
 | Multivariate Plots | Heat Map / Scatte Plot | Zooming |
 | Modeling | Bar Chart | Sorting |
