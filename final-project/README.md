@@ -40,6 +40,8 @@ The following is the first 10 data points.
 
 ![IMAGE](img/dataset.png)
 
+[Data Source is here.] (http://archive.ics.uci.edu/ml/datasets/Bank+Marketing)
+
 #### Target User ####
 I suppose that this shiny app tries to help a marketing analytics personel to analyze the data, get the inights, and finally evaluate ROI of the marketing campaign. This application consists of four components: Univariate plots, Multivariate plots, Modeling, and ROI simulation. 
 
@@ -47,10 +49,10 @@ The following is a summary about how each component associates with techniques a
 
 | **Component**  | **Techniques**  | **Interactivity**  |
 |:---------------|:----------------|:--------------------|
-| Basic Profiling (Univariate plots) | Density plot and Box plot \nBar chart and 100% Bar chart | Switch between a single plot and small multiple |
-| Multivariate Plots | - Heat Map - Scatte Plot | Zooming |
+| Basic Profiling (Univariate plots) | Density plot and Box plot / Bar chart and 100% Bar chart | Switch between a single plot and small multiple |
+| Multivariate Plots | Heat Map / Scatte Plot | Zooming |
 | Modeling | Bar Chart | Sorting |
-| ROI Simulation | Line Chart - Bar Chart | None |
+| ROI Simulation | Line Chart / Bar Chart | None |
 
 
 ### Techniques ###
