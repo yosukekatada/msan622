@@ -166,8 +166,19 @@ get_density_and_box<-function(data,x_var, facet = TRUE, log_scale=FALSE){
 ################################
 #Discretize numerical value
 discretize<-function(data3,idx,breaks){
-  min_digit<-floor(log10(abs(min(data3[,idx]))))
-  max_digit<-floor(log10(max(abs(data3[,idx]))))
+  
+  min_dat<-min(data3[,idx])
+  max_dat<-max(data3[,idx])
+  
+  if(min_dat==0){
+    min_dat<-1
+  }
+  if(max_dat==0){
+    max_dat<-1
+  }
+  
+  min_digit<-floor(log10(abs(min_dat)))
+  max_digit<-floor(log10(abs(max_dat)))
   digit<-10^min(min_digit,max_digit)
   min_dat<-floor(min(data3[,idx])/digit)*digit
   max_dat<-ceiling(max(data3[,idx])/digit)*digit
@@ -664,7 +675,7 @@ get_simulationPlot<-function(sim_table, target_customer, camp_cost){
   #Gain vs Cost
   p1<-ggplot(gain_cost)+geom_line(aes(x=Year,y=value, col=variable),size=2)
   p1<-p1+scale_x_discrete(labels=Year)+scale_y_continuous(label = thousand_formatter)
-  p1<-p1+labs(title="Revenu and Cost", x="YEAR",y="Revenue/Cost in Euro (K)")
+  p1<-p1+labs(title="Revenue and Cost", x="YEAR",y="Revenue/Cost in Euro (K)")
   p1<-p1+labs(colour = "")
   p1<-p1+theme(panel.background = element_rect(fill="white",colour="black"),
                panel.grid.major.x = element_blank(),
