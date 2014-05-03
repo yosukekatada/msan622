@@ -146,6 +146,8 @@ As another multivariate plot, you can look at a scatter plot. In this scatter pl
 In this part, most of interactivity is associated with modeling. For example, you can select which independent variables are included in the modeling. In terms of data visualization, you can select either coefficients or p value for sort key and choose sort order.
 
 ![IMAGE](img/logisticreg_ui.png)
+
+If you clicked a tab called "Standardized Coefficients", you can see the following image.
 ![IMAGE](img/logisticreg_ui2.png)
 
 #### ROI Simulation ####
@@ -158,17 +160,15 @@ ROI simulation page only have the numeric input to simulate ROI. For example, yo
 
 | **Component** | **Before**  | **Feedback**  | **changes**  |
 |:-------------------|:---------------|:----------------|:--------------------|
-| Heat Map |Background color in heat map was black |  "Black color is too dominant" | I changed the color from black to **dark gray** |
-| Modeling | Standardized coefficients bar chart could be sorted by coeffcient |"The bar plot could be sorted by p-value as well as by the coefficients" | I addded p value as annother sort key|
-| ROI Simulation |In "profit/loss bar chart", the bar's color was always blue | "It is cool if you can distinguish profit and loss by different colors" | I used red for loss and blue for profit |
+| Heat Map |Background color in heat map was **black** |  "Black color is too dominant" | I changed the color from **black to dark gray** |
+| Modeling | Standardized coefficients bar chart could be **sorted by coeffcient** |"The bar plot could be sorted by p-value as well as by the coefficients" | I added **p value as another sort key**|
+| ROI Simulation |In "profit/loss bar chart", the bar's color was **always blue** | "It is cool if you can distinguish profit and loss by different colors" | I used **red for loss and blue for profit** |
 
 - All the feedback above were helpful because I thought that they improved graphs' visibility and the application's usability, and therefore I reflected them to my application. Especially, I did not expect that the background color of the heat map was important for audience. However, the group members pointed out that black color distructed the audiences' focus. This feedback was beyond my imagination.
 
 - I got a feedback that I would plot the data points on a scatter plot and overlay a fitted model to the scatter plot. Actually, I already implemented this plot (you can see `get_DecisionBoundary` function in `get_plots.R`), the plot was too dense. As I discussed in scatter plot section, the data has more than 40,000 data points, and even a simple scatter plot easily gets to have data density problem. So, I gave up it, although I appreciated this feedback. 
 
 ### Challenges ###
-- The most time-consuming part was **choosing colors in heat map**. In terms of overall visualizations in this app, I used red for "Yes" and blue for "No". However, I needed to decide the middle color because heat map needed gradation. I tried many times until the middle color looks reasonable. 
+- One of the difficult parts was **choosing colors in heat map**. In terms of overall visualizations in this app, I used red for "Yes" and blue for "No". However, I needed to decide the middle color because heat map needed gradation. I tried many times until the middle color looks reasonable. 
 
-- The simpler UI needed much programming efforts, especially in the first page called "Basic Profiling". This page looks simple, but the inputs are changed based on the type of the selected variable. Also, the chart itself is switched between bar chart and density plot with box plots.
-
-- 
+- Another challenge was the thing that **the simpler UI needed much programming efforts**, especially in the first page called "Basic Profiling". This page looks simple, but the inputs are changed based on the type of the selected variable. Also, the chart itself is switched between bar chart and density plot with box plots. 
