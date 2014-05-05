@@ -193,16 +193,30 @@ shinyServer(function(input, output, session){
   #Execute Logistic Regression
   glm_res<-reactive({
     input$model_run
-    logistic_reg(data=LocalFrame,
+    glm_res<-logistic_reg(data=LocalFrame,
                  x_var = isolate(input$glm_x_var),
                  train_size= isolate(input$train_size),
                  cut_prob= isolate(input$cut_prob)
     )
   })
-    
+  
+  
   #Summary of Logistic Regression  
   output$glm_summary<-renderPrint({
-    glm_res()$Result
+    call<-glm_res()$Result$call
+    coef<-glm_res()$Result$coef
+    AIC<-glm_res()$Result$aic
+    Deviance<-glm_res()$Result$deviance
+    Null_Dev<-glm_res()$Result$null.deviance
+    AIC<-paste("AIC:",AIC)
+    Deviance<-paste("Deviance:",Deviance)
+    Null_Dev<-paste("Null Deviance:",Null_Dev)
+    print(call)
+    print(coef)
+    print(AIC)
+    print(Deviance)
+    print(Null_Dev)
+    
   })
 
   #Confusion Matrix

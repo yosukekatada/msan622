@@ -434,32 +434,52 @@ logistic_reg<-function(data,x_var,train_size=0.8,cut_prob=0.5){
   y_var<-"subscribed"
   x_idx<-which(colnames(data) %in% x_var)
   y_idx<-which(colnames(data) == y_var)
-  x<-data[,x_idx]
-  y<-data[,y_idx]
+  x<-as.data.frame(data[,x_idx])
+  colnames(x)<-x_var
+  y<-as.data.frame(data[,y_idx])
+  colnames(y)<-y_var  
   df<-cbind(y,x)
-  colnames(df)[1]<-"subscribed"
+  
+  train<-as.data.frame(df[idx,])
   
   
   #Fitted GLM (normal)
-  data_glm<-glm(subscribed~.,data=df[idx,],family="binomial")
+  data_glm<-glm(subscribed~.,data=train,family="binomial")
   data_glm_summary<-summary(data_glm)
   coef<-data_glm_summary$coef
   
   #Scale dataset
   data_mm<-model.matrix(data_glm)
-  df_scale<-as.data.frame(cbind(y[idx],as.data.frame(scale(data_mm[,-1]))))
+  df_scale<-as.data.frame(cbind(y[idx,],as.data.frame(scale(data_mm[,-1]))))
   colnames(df_scale)[1]<-"subscribed"
+  colnames(df_scale)[2:length(colnames(df_scale))]<-colnames(data_mm)[2:length(colnames(data_mm))]
   
   #Fitted GLM (standardized)
   data_glm_scale<-glm(subscribed~.,data=df_scale,family="binomial")
   data_glm_scale_summary<-summary(data_glm_scale)
-  coef_scale<-data_glm_scale_summary$coef[-1,]
-  significance_scale<-ifelse(coef_scale[,4]<0.001,"p-value < 0.1%", 
-                       ifelse((coef_scale[,4] < 0.01) & (coef_scale[,4]>=0.001), "p-value < 1%", 
-                              ifelse((coef_scale[,4] < 0.05) & (coef_scale[,4]>=0.01),"p-value < 5%", "p-value >=5%")))
+
+  if(length(x_var)==1){
+    coef_scale<-data_glm_scale_summary$coef[-1,]
+    significance_scale<-ifelse(coef_scale[4]<0.001,"p-value < 0.1%", 
+                               ifelse((coef_scale[4] < 0.01) & (coef_scale[4]>=0.001), "p-value < 1%", 
+                                      ifelse((coef_scale[4] < 0.05) & (coef_scale[4]>=0.01),"p-value < 5%", "p-value >=5%")))
+    
+    
+    imp_scale<-data.frame(Importance = coef_scale[1],p_value=coef_scale[4])
+    row.names(imp_scale)<-x_var
+    
+    
+  }else{
+    coef_scale<-data_glm_scale_summary$coef[-1,]
+    significance_scale<-ifelse(coef_scale[,4]<0.001,"p-value < 0.1%", 
+                               ifelse((coef_scale[,4] < 0.01) & (coef_scale[,4]>=0.001), "p-value < 1%", 
+                                      ifelse((coef_scale[,4] < 0.05) & (coef_scale[,4]>=0.01),"p-value < 5%", "p-value >=5%")))
+    
+    
+    imp_scale<-data.frame(Importance = coef_scale[,1],p_value=coef_scale[,4])
+    
+  }
   
-  
-  imp_scale<-data.frame(Importance = coef_scale[,1],p_value=coef_scale[,4])
   importanceData_scale<-data.frame(variable_name = factor(row.names(imp_scale),levels=row.names(imp_scale)),
                              Importance = as.numeric(imp_scale[,1]), 
                              p_value = imp_scale[,2],
@@ -470,7 +490,7 @@ logistic_reg<-function(data,x_var,train_size=0.8,cut_prob=0.5){
   #Predict
   y_pred<-ifelse(predict(data_glm,newdata=df[-idx,],type="response")>cut_prob,"yes","no")
   data_mm_test<-model.matrix(data_glm$formula,data=df[-idx,])
-  y_actual<-y[-idx]
+  y_actual<-y[-idx,]
   confusion_mat<-table(y_actual,y_pred)
   acc<-sum(y_pred==y_actual)/length(y_actual)
   precision<-confusion_mat[4]/sum(y_pred=="yes")
